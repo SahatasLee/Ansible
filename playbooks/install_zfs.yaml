@@ -1,0 +1,26 @@
+---
+- name: Install ZFS Utilities and Create ZFS Pool
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install zfsutils-linux
+      apt:
+        name: zfsutils-linux
+        state: present
+
+    - name: Create ZFS pool
+      command: zpool create zfspv-pool /dev/sdb
+      args:
+        creates: /zfspv-pool
+
+    - name: Check ZFS pool status
+      command: zpool status
+      register: zpool_status
+
+    - name: Display ZFS pool status
+      debug:
+        msg: "{{ zpool_status.stdout }}"

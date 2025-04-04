@@ -1,0 +1,7 @@
+[cluster:children]
+cat_cluster
+
+[cat_cluster]
+cat01 ansible_ssh_host=10.111.0.113
+cat02 ansible_ssh_host=10.111.0.114
+cat03 ansible_ssh_host=10.111.0.115

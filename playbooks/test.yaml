@@ -1,0 +1,8 @@
+- name: call group variable and return to a new variable
+  become: yes
+  hosts: cat_cluster
+  tasks:
+    - name: run echo command and capture output to myoutputvar
+      command: "echo test"
+      register: myoutputvar
+    - debug: var=myoutputvar
