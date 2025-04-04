@@ -1,0 +1,12 @@
+---
+- name: Install ZFS Utilities and Create ZFS Pool
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Check ZFS pool status
+      command: zpool status
+      register: zpool_status
+    - debug: var=zpool_status
+
+
